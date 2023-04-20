@@ -218,7 +218,7 @@ module TMS34020
 	
 	bit  [ 1: 0] WORD_MASK;
 	wire IW_WAIT = DECI.IWL[1] && PC[4];
-	wire INT_REQ = (DI_REQ || DI_REQ || DI_REQ || DI_REQ) && ST.IE;
+	wire INT_REQ = (DI_REQ || HI_REQ || WV_REQ || INT1_REQ || INT2_REQ) && ST.IE;
 	
 	always @(posedge CLK or negedge RST_N) begin		
 		bit [31: 0] PC_NEXT;

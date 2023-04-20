@@ -1074,7 +1074,7 @@ module TMS34020_ID
 										DECI.RD = 4'd7;
 										DECI.RS = 4'd7;
 										DECI.R = 1;
-										DECI.PF = '{PBLT_NONE, POFFS_NONE, WIN_DADJ, PLN_NONE};
+										DECI.PF = '{PBLT_NONE, POFFS_NONE, WIN_INIT, PLN_NONE};
 										DECI.NST = IC[5] && PIX_WINEN ? 5'd1 : 5'd8;
 										DECI.LST = 0;
 									end
@@ -1184,7 +1184,7 @@ module TMS34020_ID
 										DECI.RWA = '{RS_ALU, 1'b1};
 										DECI.LST = 0;
 									end
-									5'd12: begin //B2+0->PPW, B2+B3->DOFFS
+									5'd12: begin //B2+B3->DOFFS
 										DECI.RD = 4'd2;
 										DECI.RS = 4'd3;
 										DECI.R = 1;
@@ -1192,11 +1192,15 @@ module TMS34020_ID
 										DECI.AIB = '{IMM_K, CV_0 , AS_CONST, EO_NONE};
 										DECI.ALU = '{ALUOP_ADD, 4'b0000, 1'b0};
 										DECI.PALU = '{PIXOP_NOP, PIXAS_REGB, CNVS_DP};
-										DECI.PF = '{PBLT_STRT, POFFS_INIT, WIN_NONE, PLN_NONE};
-										DECI.NST = 5'd14;
+										DECI.PF = '{PBLT_NONE, POFFS_INIT, WIN_NONE, PLN_NONE};
+//										DECI.NST = 5'd14;
 										DECI.LST = 0;
 									end
-									5'd13: begin //
+									5'd13: begin //B2->PPW
+										DECI.RD = 4'd2;
+										DECI.RS = 4'd2;
+										DECI.R = 1;
+										DECI.PF = '{PBLT_STRT, POFFS_NONE, WIN_NONE, PLN_NONE};
 										DECI.LST = 0;
 									end
 									5'd14: begin	//(*B0->BUF,B0+PW->B0)
@@ -1268,9 +1272,9 @@ module TMS34020_ID
 										DECI.AIB = '{IMM_K, CV_0 , AS_PIX  , EO_NONE};
 										DECI.ALU = '{ALUOP_ADD, 4'b0000, 1'b0};
 										DECI.PALU = '{PIXOP_OFFS, PIXAS_REGB, CNVS_DP};
-										DECI.PF = '{PBLT_STRT, POFFS_NEXT, WIN_NONE, PLN_NONE};
+										DECI.PF = '{PBLT_NONE, POFFS_NEXT, WIN_NONE, PLN_NONE};
 										DECI.RWA = '{RS_ALU, 1'b1};
-										DECI.NST = 5'd14;
+										DECI.NST = 5'd13;
 										DECI.LST = PIX_YEND;
 									end
 								endcase
@@ -1282,7 +1286,7 @@ module TMS34020_ID
 										DECI.RD = 4'd7;
 										DECI.RS = 4'd7;
 										DECI.R = 1;
-										DECI.PF = '{PBLT_NONE, POFFS_NONE, WIN_DADJ, PLN_NONE};
+										DECI.PF = '{PBLT_NONE, POFFS_NONE, WIN_INIT, PLN_NONE};
 										DECI.NST = IC[5] && PIX_WINEN ? 5'd1 : 5'd8;
 										DECI.LST = 0;
 									end
@@ -1393,7 +1397,7 @@ module TMS34020_ID
 										DECI.RWA = '{RS_ALU, 1'b1};
 										DECI.LST = 0;
 									end
-									5'd12: begin //B2+0->PPW, B2+B3->DOFFS
+									5'd12: begin //B2+B3->DOFFS
 										DECI.RD = 4'd2;
 										DECI.RS = 4'd3;
 										DECI.R = 1;
@@ -1401,11 +1405,14 @@ module TMS34020_ID
 										DECI.AIB = '{IMM_K, CV_0 , AS_CONST, EO_NONE};
 										DECI.ALU = '{ALUOP_ADD, 4'b0000, 1'b0};
 										DECI.PALU = '{PIXOP_NOP, PIXAS_REGA, CNVS_DP};
-										DECI.PF = '{PBLT_STRT, POFFS_INIT, WIN_NONE, PLN_NONE};
-										DECI.NST = 5'd14;
+										DECI.PF = '{PBLT_NONE, POFFS_INIT, WIN_NONE, PLN_NONE};
 										DECI.LST = 0;
 									end
-									5'd13: begin //
+									5'd13: begin //B2->PPW
+										DECI.RD = 4'd2;
+										DECI.RS = 4'd2;
+										DECI.R = 1;
+										DECI.PF = '{PBLT_STRT, POFFS_NONE, WIN_NONE, PLN_NONE};
 										DECI.LST = 0;
 									end
 									5'd14: begin	//(*B0->BUF,B0+32->B0)
@@ -1478,9 +1485,9 @@ module TMS34020_ID
 										DECI.AIB = '{IMM_K, CV_0 , AS_PIX  , EO_NONE};
 										DECI.ALU = '{ALUOP_ADD, 4'b0000, 1'b0};
 										DECI.PALU = '{PIXOP_OFFS, PIXAS_REGB, CNVS_DP};
-										DECI.PF = '{PBLT_STRT, POFFS_NEXT, WIN_NONE, PLN_NONE};
+										DECI.PF = '{PBLT_NONE, POFFS_NEXT, WIN_NONE, PLN_NONE};
 										DECI.RWA = '{RS_ALU, 1'b1};
-										DECI.NST = 5'd14;
+										DECI.NST = 5'd13;
 										DECI.LST = PIX_YEND;
 									end
 								endcase
@@ -1492,7 +1499,7 @@ module TMS34020_ID
 										DECI.RD = 4'd7;
 										DECI.RS = 4'd7;
 										DECI.R = 1;
-										DECI.PF = '{PBLT_NONE, POFFS_NONE, WIN_DADJ, PLN_NONE};
+										DECI.PF = '{PBLT_NONE, POFFS_NONE, WIN_INIT, PLN_NONE};
 										DECI.NST = IC[5] && PIX_WINEN ? 5'd1 : 5'd8;
 										DECI.LST = 0;
 									end
@@ -1603,7 +1610,7 @@ module TMS34020_ID
 										DECI.RWA = '{RS_ALU, 1'b1};
 										DECI.LST = 0;
 									end
-									5'd12: begin //B2+0->PPW, B2+B3->DOFFS
+									5'd12: begin //B2+B3->DOFFS
 										DECI.RD = 4'd2;
 										DECI.RS = 4'd3;
 										DECI.R = 1;
@@ -1611,11 +1618,14 @@ module TMS34020_ID
 										DECI.AIB = '{IMM_K, CV_0 , AS_CONST, EO_NONE};
 										DECI.ALU = '{ALUOP_ADD, 4'b0000, 1'b0};
 										DECI.PALU = '{PIXOP_NOP, PIXAS_REGB, CNVS_DP};
-										DECI.PF = '{PBLT_STRT, POFFS_INIT, WIN_NONE, PLN_NONE};
-										DECI.NST = 5'd14;
+										DECI.PF = '{PBLT_NONE, POFFS_INIT, WIN_NONE, PLN_NONE};
 										DECI.LST = 0;
 									end
-									5'd13: begin //
+									5'd13: begin //B2->PPW
+										DECI.RD = 4'd2;
+										DECI.RS = 4'd2;
+										DECI.R = 1;
+										DECI.PF = '{PBLT_STRT, POFFS_NONE, WIN_NONE, PLN_NONE};
 										DECI.LST = 0;
 									end
 									5'd14: begin	//
@@ -1668,9 +1678,9 @@ module TMS34020_ID
 										DECI.AIB = '{IMM_K, CV_0 , AS_PIX  , EO_NONE};
 										DECI.ALU = '{ALUOP_ADD, 4'b0000, 1'b0};
 										DECI.PALU = '{PIXOP_OFFS, PIXAS_REGB, CNVS_DP};
-										DECI.PF = '{PBLT_STRT, POFFS_NEXT, WIN_NONE, PLN_NONE};
+										DECI.PF = '{PBLT_NONE, POFFS_NEXT, WIN_NONE, PLN_NONE};
 										DECI.RWA = '{RS_ALU, 1'b1};
-										DECI.NST = 5'd14;
+										DECI.NST = 5'd13;
 										DECI.LST = PIX_YEND;
 									end
 								endcase
